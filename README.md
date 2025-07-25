@@ -2,7 +2,7 @@
 
 This is a SpringBoot REST API application that provides user and blog post management functionality, as well as out-of-memory storage using MS SQL Server.
 
-## Project Structure
+## Project Structure (Still a work in progress)
 ```
 src/
 ├── main/
