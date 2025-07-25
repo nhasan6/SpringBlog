@@ -49,15 +49,13 @@ localhost/ (IN MS SQL SERVER MANAGEMENT STUDIO)
 <img width="483" height="302.5" alt="Screenshot 2025-07-25 155708" src="https://github.com/user-attachments/assets/ebabbbe2-981e-43fe-a786-1dc365f7ef0a" />
 
 
-
-
-
-
-
 - (Creating Posts)
 
 <img width="514.5" height="434" alt="Screenshot 2025-07-25 155055" src="https://github.com/user-attachments/assets/5401eca8-0d22-44f0-afde-7f6a1bdbce9d" />
 
 
+## SQL Database
 
+
+<img width="747.5" height="209.5" alt="Screenshot 2025-07-25 160824" src="https://github.com/user-attachments/assets/b38087dd-9ea1-4a14-b7a7-2a581fc7f0b2" />
 
