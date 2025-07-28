@@ -29,7 +29,7 @@ public class Post{
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "AuthorId", nullable = false, columnDefinition = "INT")
-    @JsonProperty("authorId")
+    @JsonProperty("author")
     private User author; 
 
     @Column(name = "Title", nullable = false, columnDefinition = "NVARCHAR(100)")
