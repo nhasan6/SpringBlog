@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/api/users")
 
 public class UserController {
@@ -75,10 +76,22 @@ public class UserController {
         return ResponseEntity.badRequest().body("Unable to sign out because no user is signed in.");
     }
 
+    // @PatchMapping("/{username}") // bug - gives access to user and admin to change account details. change so its just the user
+    // public ResponseEntity<String> modifyUser(@PathVariable String username, @RequestParam String field, @RequestBody String newText) {
+    //     try {
+    //         if (userService.modifyUser(userService.findUser(username), field, newText)) {
+    //             return ResponseEntity.ok().body("User successfully updated");
+    //         }
+    //         return ResponseEntity.status(401).body("Unauthorized user. Account could not be modified.");
+    //     } catch (IllegalArgumentException e) {
+    //         return ResponseEntity.status(404).body(e.getMessage()); // username does not exist
+    //     }
+    // }
+
     @PatchMapping("/{username}") // bug - gives access to user and admin to change account details. change so its just the user
-    public ResponseEntity<String> modifyUser(@PathVariable String username, @RequestParam String field, @RequestBody String newText) {
+    public ResponseEntity<String> modifyUser(@PathVariable String username, @RequestBody user updatedUser) {
         try {
-            if (userService.modifyUser(userService.findUser(username), field, newText)) {
+            if (userService.modifyUser(userService.findUser(username), updatedUser)) {
                 return ResponseEntity.ok().body("User successfully updated");
             }
             return ResponseEntity.status(401).body("Unauthorized user. Account could not be modified.");
