@@ -19,7 +19,7 @@ public interface PostService {
     public Post findPost(int postIdNum);
     public Post addPost(String title, String content);
     public boolean deletePost(Post blogPost);
-    public boolean modifyPost(int postIdNum, String field, String newContent);
+    public boolean modifyPost(int postIdNum, Post updatedPost);
     public ArrayList<Post> getPostsbyAuthor(String username);
 
 }
