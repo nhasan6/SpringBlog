@@ -96,10 +96,22 @@ public class PostController {
         } 
     }
 
-    @PatchMapping("/{id}") // bug, throws 404 for both exceptions (no post found and incorrect argument given)
-    public ResponseEntity<String> modifyPost(@PathVariable int id, @RequestParam String modificationType, @RequestBody String newText) {
+    // @PatchMapping("/{id}") // bug, throws 404 for both exceptions (no post found and incorrect argument given)
+    // public ResponseEntity<String> modifyPost(@PathVariable int id, @RequestParam String modificationType, @RequestBody String newText) {
+    //     try {
+    //         if (postService.modifyPost(id, modificationType, newText)) {
+    //             return ResponseEntity.ok().body("Post successfully updated");
+    //         }
+    //         return ResponseEntity.status(401).body("Unauthorized user. Post could not be modified.");
+    //     } catch (IllegalArgumentException e) {
+    //         return ResponseEntity.status(404).body(e.getMessage());
+    //     }
+    // }
+
+    @PatchMapping("/{id}") 
+    public ResponseEntity<String> modifyPost(@PathVariable int id, @RequestBody Post updatedPost) {
         try {
-            if (postService.modifyPost(id, modificationType, newText)) {
+            if (postService.modifyPost(id, updatedPost)) {
                 return ResponseEntity.ok().body("Post successfully updated");
             }
             return ResponseEntity.status(401).body("Unauthorized user. Post could not be modified.");
