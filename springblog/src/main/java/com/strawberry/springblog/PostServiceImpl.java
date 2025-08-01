@@ -103,26 +103,41 @@ public class PostServiceImpl implements PostService{
         return post.getAuthor().getId() == user.getId();
     }
 
+    // @Override
+    // public boolean modifyPost(int postIdNum, String field, String newContent) { // change bc the booleans are too ocnfusing old version returned a boolean
+    //     Post blogPost = postRepository.findById(postIdNum);
+    //     if (blogPost == null) {
+    //         throw new IllegalArgumentException("Post with specified ID # does not exist.");
+    //     }
+    //     if (isAuthorOrAdmin(userService.getCurrentUser(), blogPost)) {
+    //         switch (field.toLowerCase()) {
+    //             case "overwrite":
+    //                 blogPost.changeContent(newContent);
+    //                 break;
+    //             case "add":
+    //                 blogPost.addContent(newContent);
+    //                 break;
+    //             case "rename":
+    //                 blogPost.setTitle(newContent);
+    //                 break;
+    //             default:
+    //                 throw new IllegalArgumentException("Inadmissable data field."); // 'rename', 'update', 'overwrite'
+    //         }
+    //         postRepository.save(blogPost); // add updated post back to the blog --> previouslt update, we will see
+    //         return true;
+    //     }
+    //     return false; // user didn't have authorization to modify the post
+    // }
+
     @Override
-    public boolean modifyPost(int postIdNum, String field, String newContent) { // change bc the booleans are too ocnfusing old version returned a boolean
+    public boolean modifyPost(int postIdNum, Post updatedPost) { // change bc the booleans are too ocnfusing old version returned a boolean
         Post blogPost = postRepository.findById(postIdNum);
         if (blogPost == null) {
             throw new IllegalArgumentException("Post with specified ID # does not exist.");
         }
         if (isAuthorOrAdmin(userService.getCurrentUser(), blogPost)) {
-            switch (field.toLowerCase()) {
-                case "overwrite":
-                    blogPost.changeContent(newContent);
-                    break;
-                case "add":
-                    blogPost.addContent(newContent);
-                    break;
-                case "rename":
-                    blogPost.setTitle(newContent);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Inadmissable data field."); // 'rename', 'update', 'overwrite'
-            }
+            blogPost.changeContent(updatedPost.getContent());
+            blogPost.setTitle(updatedPost.getTitle());
             postRepository.save(blogPost); // add updated post back to the blog --> previouslt update, we will see
             return true;
         }
