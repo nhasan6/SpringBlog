@@ -62,22 +62,35 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    // @Override
+    // public boolean modifyUser(User account, String field, String newContent) {
+    //     if (hasAuthorization(account)) {
+    //         switch (field.toLowerCase()) {
+    //             case "password":
+    //                 account.setPassword(newContent);
+    //                 break;
+    //             case "username":
+    //                 account.setUsername(newContent);
+    //                 break;
+    //             case "name":
+    //                 account.setFirstName(newContent);
+    //                 break;
+    //             default:
+    //                 throw new IllegalArgumentException("Inadmissable data field."); // 'password', 'username', 'name'
+    //         }
+    //         userRepository.save(account); // add updated profile back to the map
+    //         return true;
+    //     }
+    //     return false; // no authorization
+
+    // }
+
     @Override
-    public boolean modifyUser(User account, String field, String newContent) {
+    public boolean modifyUser(User account, user updatedUser) {
         if (hasAuthorization(account)) {
-            switch (field.toLowerCase()) {
-                case "password":
-                    account.setPassword(newContent);
-                    break;
-                case "username":
-                    account.setUsername(newContent);
-                    break;
-                case "name":
-                    account.setFirstName(newContent);
-                    break;
-                default:
-                    throw new IllegalArgumentException("Inadmissable data field."); // 'password', 'username', 'name'
-            }
+            account.setPassword(updatedUser.getPassword());
+            account.setUsername(updatedUser.getUsername());
+            account.setFirstName(updatedUser.getFirstName());
             userRepository.save(account); // add updated profile back to the map
             return true;
         }
